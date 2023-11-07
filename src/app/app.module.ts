@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,13 @@ import { BrandComponent } from './component/brand/brand.component';
 import { TypeclothingComponent } from './component/typeclothing/typeclothing.component';
 import { BrandListarComponent } from './component/brand/brand-listar/brand-listar.component';
 import { TypeclothingListarComponent } from './component/typeclothing/typeclothing-listar/typeclothing-listar.component';
+import { ColorListarComponent } from './component/color/color-listar/color-listar.component';
+import { EventListarComponent } from './component/event/event-listar/event-listar.component';
+import { BrandCreaeditaComponent } from './component/brand/brand-creaedita/brand-creaedita.component';
+import { ColorCreaeditaComponent } from './component/color/color-creaedita/color-creaedita.component';
+import { EventCreaeditaComponent } from './component/event/event-creaedita/event-creaedita.component';
+import { TypeclothingCreaeditaComponent } from './component/typeclothing/typeclothing-creaedita/typeclothing-creaedita.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -30,11 +37,18 @@ import { TypeclothingListarComponent } from './component/typeclothing/typeclothi
     BrandComponent,
     TypeclothingComponent,
     BrandListarComponent,
-    TypeclothingListarComponent
+    TypeclothingListarComponent,
+    ColorListarComponent,
+    EventListarComponent,
+    BrandCreaeditaComponent,
+    ColorCreaeditaComponent,
+    EventCreaeditaComponent,
+    TypeclothingCreaeditaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatListModule,
@@ -47,7 +61,8 @@ import { TypeclothingListarComponent } from './component/typeclothing/typeclothi
     MatNativeDateModule,
     MatPaginatorModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

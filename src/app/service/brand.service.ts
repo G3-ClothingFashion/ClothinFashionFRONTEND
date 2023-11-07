@@ -33,4 +33,9 @@ export class BrandService {
     return this.http.delete(`${this.url}/${idBrand}`);
   }
 
+  //UPDATE Y BUSCAR
+  update(br:Brand){
+    return this.http.put(this.url,br);
+  }
+
 }

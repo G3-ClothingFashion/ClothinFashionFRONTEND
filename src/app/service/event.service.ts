@@ -11,11 +11,28 @@ export class EventService {
   private url=`${base_url}/events`
   private listaCambio=new Subject<Event[]>()
   constructor(private http:HttpClient) { }
-  //insert, delete
+
   insert(ev:Event){
     return this.http.post(this.url,ev);
   }
   delete(idEvent:number){
     return this.http.delete(`${this.url}/${idEvent}`);
+  }
+  list(){
+    return this.http.get<Event[]>(this.url);
+  }
+  setList(listaNueva:Event[]){
+    this.listaCambio.next(listaNueva);
+  }
+  getList(){
+    return this.listaCambio.asObservable();
+  }
+  listId(idEvent:number){
+    return this.http.get<Event>(`${this.url}/${idEvent}`);
+  }
+
+  //UPDATE Y BUSCAR
+  update(ev:Event){
+    return this.http.put(this.url,ev);
   }
 }

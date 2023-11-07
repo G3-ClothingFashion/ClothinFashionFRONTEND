@@ -1,7 +1,7 @@
 export class Brand{
   idBrand:number=0
   nameBrand:string=""
-  country=""
+  country:string=""
   webSite:string=""
   description:string=""
   tags:string=""

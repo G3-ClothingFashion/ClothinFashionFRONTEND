@@ -22,4 +22,22 @@ export class ColorService {
   delete(idColor:number){
     return this.http.delete(`${this.url}/${idColor}`);
   }
+  list(){
+    return this.http.get<Color[]>(this.url);
+  }
+  setList(listaNueva:Color[]){
+    this.listaCambio.next(listaNueva);
+  }
+  getList(){
+    return this.listaCambio.asObservable();
+  }
+  listId(idColor:number){
+    return this.http.get<Color>(`${this.url}/${idColor}`);
+  }
+
+  //UPDATE Y BUSCAR
+
+  update(co:Color){
+    return this.http.put(this.url,co);
+  }
 }

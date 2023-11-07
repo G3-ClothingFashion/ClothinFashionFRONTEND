@@ -11,7 +11,7 @@ export class TypeclothingService {
   private url=`${base_url}/typeclothings`
   private listaCambio=new Subject<TypeClothing[]>();
   constructor(private http:HttpClient) { }
-  //insert, list, delete, listId
+
   insert(tc:TypeClothing){
     return this.http.post(this.url,tc);
   }
@@ -30,4 +30,10 @@ export class TypeclothingService {
   listId(idTypeClothing:number){
     return this.http.get<TypeClothing>(`${this.url}/${idTypeClothing}`);
   }
+
+  //UPDATE Y BUSCAR
+  update(tc:TypeClothing){
+    return this.http.put(this.url,tc);
+  }
+
 }
