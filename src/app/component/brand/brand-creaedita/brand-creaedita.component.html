@@ -26,13 +26,17 @@
         </mat-form-field>
         <br />
 
-        <mat-form-field class="example-full-width" >
-          <mat-label>Pais</mat-label>
-          <input matInput placeholder="pais" formControlName="country" />
+        <mat-form-field>
+          <mat-label>Marcas de Paises</mat-label>
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let p of paises" [value]="p.value">
+              {{ p.viewValue }}
+            </mat-option>
+          </mat-select>
           <mat-error
             *ngIf="obtenerControlCampo('country')?.errors?.['required']"
           >
-            El pais de la marca es obligatorio.
+            El País de la Marca es obligatorio.
           </mat-error>
         </mat-form-field>
         <br />
@@ -73,7 +77,7 @@
         <br />
 
         <button mat-raised-button color="primary">Aceptar</button>
-        <button mat-raised-button color="warn" routerLink="components/brands">
+        <button mat-raised-button color="warn" routerLink="/components/brands">
           Cancelar
         </button>
         <p>{{ mensaje }}</p>

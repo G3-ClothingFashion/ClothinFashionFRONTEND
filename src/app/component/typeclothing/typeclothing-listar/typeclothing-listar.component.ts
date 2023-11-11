@@ -11,7 +11,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class TypeclothingListarComponent implements OnInit{
   dataSource:MatTableDataSource<TypeClothing>=new MatTableDataSource();
-  displayedColumns:string[]=['idTipoPrenda','talla','genero','descripcion','categoria','ocasion','accion01','accion02'];
+  displayedColumns:string[]=['idTipoPrenda','nombre','talla','genero','descripcion','categoria','ocasion','accion01','accion02'];
   @ViewChild(MatPaginator)paginator!:MatPaginator;
   constructor(private tcS:TypeclothingService, private loginService:LoginService){}
   ngOnInit(): void {

@@ -16,6 +16,21 @@
         </mat-form-field>
         <br />
 
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre Tipo Prenda</mat-label>
+          <input
+            matInput
+            placeholder="nameTypeClothing"
+            formControlName="nameTypeClothing"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameTypeClothing')?.errors?.['required']"
+          >
+            LEl nombre del tipo de prenda es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
         <mat-form-field>
           <mat-label>Talla</mat-label>
           <mat-select formControlName="size">
@@ -85,7 +100,7 @@
         </mat-form-field>
         <br />
         <button mat-raised-button color="primary">Aceptar</button>
-        <button mat-raised-button color="warn" routerLink="components/typeClothings">
+        <button mat-raised-button color="warn" routerLink="/components/typeClothings">
           Cancelar
         </button>
         <p>{{ mensaje }}</p>

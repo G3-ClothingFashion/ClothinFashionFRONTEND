@@ -21,6 +21,21 @@ export class BrandCreaeditaComponent implements OnInit {
   mensaje: string = '';
   id: number = 0;
   edicion: boolean = false;
+  paises:{value:string;viewValue:string}[]=[
+    {value:'Alemania',viewValue:'Alemania'},
+    {value:'Bangladesh',viewValue:'Bangladesh'},
+    {value:'Brasil',viewValue:'Brasil'},
+    {value:'China',viewValue:'China'},
+    {value:'Estados Unidos',viewValue:'Estados Unidos'},
+    {value:'España',viewValue:'España'},
+    {value:'Francia',viewValue:'Francia'},
+    {value:'India',viewValue:'India'},
+    {value:'Italia',viewValue:'Italia'},
+    {value:'Paises Bajos',viewValue:'Paises Bajos'},
+    {value:'Peru',viewValue:'Peru'},
+    {value:'Reino Unido',viewValue:'Reino Unido'},
+    {value:'Vietnam',viewValue:'Vietnam'},
+  ];
   constructor(private bS:BrandService,private router:Router,private formBuilder:FormBuilder,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.route.params.subscribe((data:Params)=>{

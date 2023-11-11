@@ -29,6 +29,20 @@ export class TypeclothingCreaeditaComponent implements OnInit{
     {value:'L',viewValue:'L'},
     {value:'XL',viewValue:'XL'},
     {value:'XLL',viewValue:'XLL'},
+    {value:'36',viewValue:'36'},
+    {value:'36.5',viewValue:'36.5'},
+    {value:'37',viewValue:'37'},
+    {value:'37.5',viewValue:'37.5'},
+    {value:'38',viewValue:'38'},
+    {value:'39',viewValue:'39'},
+    {value:'40',viewValue:'40'},
+    {value:'41',viewValue:'41'},
+    {value:'41.5',viewValue:'41.5'},
+    {value:'42',viewValue:'42'},
+    {value:'42.5',viewValue:'42.5'},
+    {value:'43',viewValue:'43'},
+    {value:'43.5',viewValue:'43.5'},
+    {value:'44',viewValue:'44'},
   ];
   //GENDER
   generos:{value:string,viewValue:string}[]=[
@@ -37,10 +51,16 @@ export class TypeclothingCreaeditaComponent implements OnInit{
   ];
   //CATEGORY
   categoria:{value:string,viewValue:string}[]=[
-    {value:'Pantalon',viewValue:'Pantalon'},
     {value:'Camisa',viewValue:'Camisa'},
+    {value:'Calzones',viewValue:'Calzones'},
+    {value:'Falda',viewValue:'Falda'},
+    {value:'Medias',viewValue:'Medias'},
+    {value:'Pantalon',viewValue:'Pantalon'},
+    {value:'Polo',viewValue:'Polo'},
+    {value:'Ropa Interior',viewValue:'Ropa Interior'},
     {value:'Sudadera',viewValue:'Sudadera'},
     {value:'Short',viewValue:'Short'},
+    {value:'Tenis',viewValue:'Tenis'},
     {value:'Zapatos',viewValue:'Zapatos'},
     {value:'Zapatillas',viewValue:'Zapatillas'},
   ];
@@ -54,6 +74,7 @@ export class TypeclothingCreaeditaComponent implements OnInit{
     });
     this.form=this.formBuilder.group({
       idTypeClothing:['',],
+      nameTypeClothing:['',Validators.required],
       size:['',Validators.required],
       gender:['',Validators.required],
       description:['',Validators.required],
@@ -65,6 +86,7 @@ export class TypeclothingCreaeditaComponent implements OnInit{
   registrar(){
     if(this.form.valid){
       this.typeClothing.idTypeClothing=this.form.value.idTypeClothing;
+      this.typeClothing.nameTypeClothing=this.form.value.nameTypeClothing;
       this.typeClothing.size=this.form.value.size;
       this.typeClothing.gender=this.form.value.gender;
       this.typeClothing.description=this.form.value.description;
@@ -99,6 +121,7 @@ export class TypeclothingCreaeditaComponent implements OnInit{
       this.tcS.listId(this.id).subscribe((data)=>{
         this.form=new FormGroup({
           idTypeClothing:new FormControl(data.idTypeClothing),
+          nameTypeClothing:new FormControl(data.nameTypeClothing),
           size:new FormControl(data.size),
           gender:new FormControl(data.gender),
           description:new FormControl(data.description),
