@@ -1,5 +1,5 @@
 import { Observable,Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Color } from '../model/color';
@@ -9,21 +9,36 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class ColorService {
-  private url=`${base_url}/colors`
+  private url=`${base_url}/colores`
   private listaCambio=new Subject<Color[]>()
   constructor(private http:HttpClient) { }
 
   //insert , delete
 
   insert(co:Color){
-    return this.http.post(this.url,co);
+    let token=sessionStorage.getItem('token');
+    return this.http.post(this.url,co,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   delete(idColor:number){
-    return this.http.delete(`${this.url}/${idColor}`);
+    let token= sessionStorage.getItem('token');
+    return this.http.delete(`${this.url}/${idColor}`,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   list(){
-    return this.http.get<Color[]>(this.url);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<Color[]>(this.url,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   setList(listaNueva:Color[]){
     this.listaCambio.next(listaNueva);
@@ -32,12 +47,22 @@ export class ColorService {
     return this.listaCambio.asObservable();
   }
   listId(idColor:number){
-    return this.http.get<Color>(`${this.url}/${idColor}`);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<Color>(`${this.url}/${idColor}`,{
+      headers: new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json'),
+    });
   }
 
   //UPDATE Y BUSCAR
 
   update(co:Color){
-    return this.http.put(this.url,co);
+    let token=sessionStorage.getItem('token');
+    return this.http.put(this.url,co,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

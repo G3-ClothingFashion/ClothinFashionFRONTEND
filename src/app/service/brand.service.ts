@@ -1,5 +1,5 @@
 import { Observable,Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Brand } from '../model/brand';
@@ -15,10 +15,20 @@ export class BrandService {
   //insert, list, delete, listid
 
   list(){
-    return this.http.get<Brand[]>(this.url);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<Brand[]>(this.url,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   insert(br:Brand){
-    return this.http.post(this.url,br);
+    let token= sessionStorage.getItem('token');
+    return this.http.post(this.url,br,{
+      headers: new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json'),
+    });
   }
   setList(listaNueva:Brand[]){
     this.listaCambio.next(listaNueva);
@@ -27,15 +37,30 @@ export class BrandService {
     return this.listaCambio.asObservable();
   }
   listId(idBrand:number){
-    return this.http.get<Brand>(`${this.url}/${idBrand}`);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<Brand>(`${this.url}/${idBrand}`,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   delete(idBrand:number){
-    return this.http.delete(`${this.url}/${idBrand}`);
+    let token=sessionStorage.getItem('token');
+    return this.http.delete(`${this.url}/${idBrand}`,{
+      headers:new HttpHeaders()
+      .set('Authorization',`Bearer ${token}`)
+      .set('Content-Type','application/json'),
+    });
   }
 
   //UPDATE Y BUSCAR
   update(br:Brand){
-    return this.http.put(this.url,br);
+    let token=sessionStorage.getItem('token');
+    return this.http.put(this.url,br,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 }

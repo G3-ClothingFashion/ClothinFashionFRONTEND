@@ -10,7 +10,7 @@
       <br />
       <h2 style="text-align: center">Lista de Marcas</h2>
       <div style="text-align: right">
-        <button mat-raised-button color="primary" routerLink="/brands/nuevo">Nuevo</button>
+        <button *ngIf="role=='ADMIN'" mat-raised-button color="primary" routerLink="components/brands/nuevo">Nuevo</button>
       </div>
       <mat-form-field>
         <input matInput (keyup)="filter($event)" placeholder="buscar" />

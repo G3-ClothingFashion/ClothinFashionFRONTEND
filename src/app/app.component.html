@@ -1,27 +1,48 @@
-<mat-toolbar color="primary">
-  <mat-icon>Menu</mat-icon>
-  <button mat-button [matMenuTriggerFor]="menuBrand">Marca</button>
+<mat-toolbar color="primary" *ngIf="verificar()">
+  <button mat-button [matMenuTriggerFor]="menuBrand" *ngIf="validarRol()">
+    <mat-icon>Menu</mat-icon>Marca
+  </button>
 
-  <button mat-button [matMenuTriggerFor]="menuColor">Color</button>
-  <button mat-button [matMenuTriggerFor]="menuEvento">Evento</button>
-  <button mat-button [matMenuTriggerFor]="menuTipoPrenda">Tipo Prenda</button>
+  <button mat-button [matMenuTriggerFor]="menuColor" *ngIf="validarRol()">
+    Color
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuEvento" *ngIf="validarRol()">
+    Evento
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuTipoPrenda" *ngIf="validarRol()">
+    Tipo Prenda
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuSalir">Usuario</button>
 </mat-toolbar>
 
 <mat-menu #menuBrand="matMenu">
-    <button mat-menu-item routerLink="/brands/nuevo">Registrar</button>
-    <button mat-menu-item routerLink="/brands">Listar</button>
+  <button mat-menu-item routerLink="components/brands/nuevo" *ngIf="role=='ADMIN'">Registrar</button>
+  <button mat-menu-item routerLink="components/brands">Listar</button>
 </mat-menu>
 
 <mat-menu #menuColor="matMenu">
-  <button mat-menu-item routerLink="/colores/nuevo">Registrar</button>
-  <button mat-menu-item routerLink="/colores">Listar</button>
+  <button mat-menu-item routerLink="components/colores/nuevo" *ngIf="role=='ADMIN'">Registrar</button>
+  <button mat-menu-item routerLink="components/colores">Listar</button>
 </mat-menu>
 
 <mat-menu #menuEvento="matMenu">
-  <button mat-menu-item routerLink="/events">Listar</button>
+  <button mat-menu-item routerLink="components/events/nuevo" *ngIf="role=='ADMIN'">Registrar</button>
+  <button mat-menu-item routerLink="components/events">Listar</button>
 </mat-menu>
 
 <mat-menu #menuTipoPrenda="matMenu">
-  <button mat-menu-item routerLink="/typeClothings">Listar</button>
+  <button mat-menu-item routerLink="components/typeClothings/nuevo" *ngIf="role=='ADMIN'">Registrar</button>
+  <button mat-menu-item routerLink="components/typeClothings">Listar</button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>CERRAR SESION</span>
+  </button>
+  <button mat-menu-item>
+    ROL:
+    <span>{{role}}</span>
+  </button>
 </mat-menu>
 <router-outlet></router-outlet>

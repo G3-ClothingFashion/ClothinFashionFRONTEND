@@ -10,7 +10,7 @@
     <br/>
     <h2 style="text-align: center;">Lista de Tipos de Prenda</h2>
     <div style="text-align: right;">
-      <button mat-raised-button color="primary" routerLink="">Nuevo</button>
+      <button *ngIf="role=='ADMIN'" mat-raised-button color="primary" routerLink="components/typeClothings/nuevo">Nuevo</button>
     </div>
     <mat-form-field>
       <input matInput (keyup)="filter($event)" placeholder="buscar"/>
@@ -53,7 +53,7 @@
           <button
             mat-raised-button
             color="warn"
-            [routerLink]="[]"
+            [routerLink]="['ediciones',element.idTypeClothing]"
           >
             Actualizar
           </button>

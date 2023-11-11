@@ -2,6 +2,7 @@ import { Component,OnInit,ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TypeClothing } from 'src/app/model/typeclothing';
 import { TypeclothingService } from 'src/app/service/typeclothing.service';
+import { LoginService } from 'src/app/service/login.service';
 import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-typeclothing-listar',
@@ -12,7 +13,7 @@ export class TypeclothingListarComponent implements OnInit{
   dataSource:MatTableDataSource<TypeClothing>=new MatTableDataSource();
   displayedColumns:string[]=['idTipoPrenda','talla','genero','descripcion','categoria','ocasion','accion01','accion02'];
   @ViewChild(MatPaginator)paginator!:MatPaginator;
-  constructor(private tcS:TypeclothingService){}
+  constructor(private tcS:TypeclothingService, private loginService:LoginService){}
   ngOnInit(): void {
     this.tcS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
@@ -32,5 +33,10 @@ export class TypeclothingListarComponent implements OnInit{
   }
   filter(en:any){
     this.dataSource.filter=en.target.value.trim();
+  }
+  role:string="";
+  verificar(){
+    this.role=this.loginService.showRole();
+    return this.loginService.verificar();
   }
 }

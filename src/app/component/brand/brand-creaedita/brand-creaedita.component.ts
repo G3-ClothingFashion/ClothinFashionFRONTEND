@@ -57,7 +57,7 @@ export class BrandCreaeditaComponent implements OnInit {
             this.bS.setList(data);
           });
         });
-      }this.router.navigate(['brands'])
+      }this.router.navigate(['components/brands'])
     }else{
       this.mensaje="Por favor, revise los campos";
     }

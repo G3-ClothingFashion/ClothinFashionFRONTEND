@@ -15,35 +15,15 @@ import {MatNativeDateModule}from '@angular/material/core';
 import {MatPaginatorModule}from '@angular/material/paginator';
 import {MatMenuModule}from '@angular/material/menu';
 import {MatIconModule}from '@angular/material/icon';
-import { EventComponent } from './component/event/event.component';
-import { ColorComponent } from './component/color/color.component';
-import { BrandComponent } from './component/brand/brand.component';
-import { TypeclothingComponent } from './component/typeclothing/typeclothing.component';
-import { BrandListarComponent } from './component/brand/brand-listar/brand-listar.component';
-import { TypeclothingListarComponent } from './component/typeclothing/typeclothing-listar/typeclothing-listar.component';
-import { ColorListarComponent } from './component/color/color-listar/color-listar.component';
-import { EventListarComponent } from './component/event/event-listar/event-listar.component';
-import { BrandCreaeditaComponent } from './component/brand/brand-creaedita/brand-creaedita.component';
-import { ColorCreaeditaComponent } from './component/color/color-creaedita/color-creaedita.component';
-import { EventCreaeditaComponent } from './component/event/event-creaedita/event-creaedita.component';
-import { TypeclothingCreaeditaComponent } from './component/typeclothing/typeclothing-creaedita/typeclothing-creaedita.component';
 import { MatSelectModule } from '@angular/material/select';
+import {MatSnackBarModule}from'@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventComponent,
-    ColorComponent,
-    BrandComponent,
-    TypeclothingComponent,
-    BrandListarComponent,
-    TypeclothingListarComponent,
-    ColorListarComponent,
-    EventListarComponent,
-    BrandCreaeditaComponent,
-    ColorCreaeditaComponent,
-    EventCreaeditaComponent,
-    TypeclothingCreaeditaComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +42,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatMenuModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

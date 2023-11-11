@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Color } from 'src/app/model/color';
 import { ColorService } from 'src/app/service/color.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginService } from 'src/app/service/login.service';
 @Component({
   selector: 'app-color-listar',
   templateUrl: './color-listar.component.html',
@@ -12,7 +13,7 @@ export class ColorListarComponent implements OnInit {
   dataSource:MatTableDataSource<Color>=new MatTableDataSource();
   displayedColumns:string[]=['idColor','nombreColor','descripcion','tipoColor','accion2','accion'];
   @ViewChild(MatPaginator)paginator!:MatPaginator;
-  constructor(private cS:ColorService){}
+  constructor(private cS:ColorService,private loginService:LoginService){}
   ngOnInit(): void {
     this.cS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
@@ -32,5 +33,10 @@ export class ColorListarComponent implements OnInit {
   }
   filter(co:any){
     this.dataSource.filter=co.target.value.trim();
+  }
+  role:string="";
+  verificar(){
+    this.role=this.loginService.showRole();
+    return this.loginService.verificar();
   }
 }

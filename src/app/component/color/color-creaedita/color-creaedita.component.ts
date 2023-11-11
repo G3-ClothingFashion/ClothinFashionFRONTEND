@@ -21,7 +21,7 @@ export class ColorCreaeditaComponent implements OnInit {
   mensaje: string = '';
   id: number = 0;
   edicion: boolean = false;
-  
+
   tiposColor:{value:string; viewValue:string}[]=[
     {value:'Primario',viewValue:'Primario'},
     {value:'Secundario',viewValue:'Secundario'},
@@ -60,7 +60,7 @@ export class ColorCreaeditaComponent implements OnInit {
             this.cS.setList(data);
           });
         });
-      }this.router.navigate(['colores'])
+      }this.router.navigate(['components/colores'])
     }else{
       this.mensaje="Por favor, revise los campos";
     }

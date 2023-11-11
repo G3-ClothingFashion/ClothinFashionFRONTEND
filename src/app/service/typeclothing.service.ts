@@ -1,6 +1,6 @@
 import { Observable,Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TypeClothing } from '../model/typeclothing';
 const base_url=environment.base
@@ -8,15 +8,25 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class TypeclothingService {
-  private url=`${base_url}/typeclothings`
+  private url=`${base_url}/typeClothings`
   private listaCambio=new Subject<TypeClothing[]>();
   constructor(private http:HttpClient) { }
 
   insert(tc:TypeClothing){
-    return this.http.post(this.url,tc);
+    let token=sessionStorage.getItem('token');
+    return this.http.post(this.url,tc,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   list(){
-    return this.http.get<TypeClothing[]>(this.url);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<TypeClothing[]>(this.url,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   setList(listaNueva:TypeClothing[]){
     this.listaCambio.next(listaNueva);
@@ -25,15 +35,31 @@ export class TypeclothingService {
     return this.listaCambio.asObservable();
   }
   delete(idTypeClothing:number){
-    return this.http.delete(`${this.url}/${idTypeClothing}`);
+    let token=sessionStorage.getItem('token');
+    return this.http.delete(`${this.url}/${idTypeClothing}`,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+
   }
   listId(idTypeClothing:number){
-    return this.http.get<TypeClothing>(`${this.url}/${idTypeClothing}`);
+    let token=sessionStorage.getItem('token');
+    return this.http.get<TypeClothing>(`${this.url}/${idTypeClothing}`,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   //UPDATE Y BUSCAR
   update(tc:TypeClothing){
-    return this.http.put(this.url,tc);
+    let token=sessionStorage.getItem('token');
+    return this.http.put(this.url,tc,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
 }

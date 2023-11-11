@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Event } from '@angular/router';
+import { Event } from 'src/app/model/event';
 import { EventService } from 'src/app/service/event.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginService } from 'src/app/service/login.service';
 @Component({
   selector: 'app-event-listar',
   templateUrl: './event-listar.component.html',
@@ -12,7 +13,7 @@ export class EventListarComponent implements OnInit{
   dataSource:MatTableDataSource<Event>=new MatTableDataSource();
   displayedColumns:string[]=['idEvento','tema','descripcionEvento','accion01','accion02'];
   @ViewChild(MatPaginator)paginator!:MatPaginator;
-  constructor(private eS:EventService){}
+  constructor(private eS:EventService,private loginService:LoginService){}
   ngOnInit(): void {
     this.eS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
@@ -32,5 +33,10 @@ export class EventListarComponent implements OnInit{
   }
   filter(en:any){
     this.dataSource.filter=en.target.value.trim();
+  }
+  role:string="";
+  verificar(){
+    this.role=this.loginService.showRole();
+    return this.loginService.verificar();
   }
 }
