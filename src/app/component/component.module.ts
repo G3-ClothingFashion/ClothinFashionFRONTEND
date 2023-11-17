@@ -25,7 +25,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { ReporteComponent } from './reporte/reporte.component';
+import { Reporte01Component } from './reporte/reporte01/reporte01.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
    BrandComponent,
@@ -40,6 +42,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
    TypeclothingComponent,
    TypeclothingCreaeditaComponent,
    TypeclothingListarComponent,
+   ReporteComponent,
+   Reporte01Component
   ],
   imports: [
     CommonModule,
@@ -56,8 +60,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
-
+    MatFormFieldModule,
+    NgChartsModule
   ]
 })
 export class ComponentModule { }

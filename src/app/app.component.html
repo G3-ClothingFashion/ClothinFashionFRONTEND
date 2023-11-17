@@ -12,6 +12,9 @@
   <button mat-button [matMenuTriggerFor]="menuTipoPrenda" *ngIf="validarRol()">
     Tipo Prenda
   </button>
+  <button mat-button [matMenuTriggerFor]="menuReportes" *ngIf="validarRol()">
+    Reportes
+  </button>
   <button mat-button [matMenuTriggerFor]="menuSalir">Usuario</button>
 </mat-toolbar>
 
@@ -33,6 +36,10 @@
 <mat-menu #menuTipoPrenda="matMenu">
   <button mat-menu-item routerLink="components/typeClothings/nuevo" *ngIf="role=='ADMIN'">Registrar</button>
   <button mat-menu-item routerLink="components/typeClothings">Listar</button>
+</mat-menu>
+
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="components/reportes" *ngIf="role=='ADMIN'">Reporte01</button>
 </mat-menu>
 
 <mat-menu #menuSalir="matMenu">

@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Brand } from '../model/brand';
+import { CountryClothingDTO } from '../model/CountryClothingDTO';
 
 const base_url=environment.base
 @Injectable({
@@ -63,4 +64,12 @@ export class BrandService {
     });
   }
 
+  getCount():Observable<CountryClothingDTO[]>{
+    let token=sessionStorage.getItem('token');
+    return this.http.get<CountryClothingDTO[]>(`${this.url}/paises`,{
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
 }

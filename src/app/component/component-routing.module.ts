@@ -8,6 +8,7 @@ import { EventComponent } from './event/event.component';
 import { EventCreaeditaComponent } from './event/event-creaedita/event-creaedita.component';
 import { TypeclothingComponent } from './typeclothing/typeclothing.component';
 import { TypeclothingCreaeditaComponent } from './typeclothing/typeclothing-creaedita/typeclothing-creaedita.component';
+import { ReporteComponent } from './reporte/reporte.component';
 const routes: Routes = [
   {
     path:'brands',component:BrandComponent,children:[
@@ -32,6 +33,9 @@ const routes: Routes = [
       {path:'nuevo',component:TypeclothingCreaeditaComponent},
       {path:'ediciones/:id',component:TypeclothingCreaeditaComponent},
     ],
+  },
+  {
+    path:'reportes',component:ReporteComponent,
   },
 ];
 
