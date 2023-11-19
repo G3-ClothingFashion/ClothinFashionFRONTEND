@@ -18,5 +18,5 @@ export class Clothing{
   store:Store=new Store()
   closet:Closet=new Closet()
   brand:Brand=new Brand()
-  typeclothing:TypeClothing=new TypeClothing()
+  typeClothing:TypeClothing=new TypeClothing()
 }
