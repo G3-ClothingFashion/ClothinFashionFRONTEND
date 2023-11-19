@@ -64,6 +64,10 @@ export class ClothingCreaditaComponent {
     private eS: EventService,
     private temS: SeasonService
   ) {}
+
+
+
+
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -83,31 +87,31 @@ export class ClothingCreaditaComponent {
       typeClothing: ['', Validators.required],
     });
     this.tS.list().subscribe((data) => {
-      this.listaTexturas = data;
+      this.listaTexturas = data
     });
     this.cS.list().subscribe((data) => {
-      this.listaColores = data;
+      this.listaColores = data
     });
     this.catS.list().subscribe((data) => {
-      this.listaCatalogos = data;
+      this.listaCatalogos = data
     });
     this.sS.list().subscribe((data) => {
-      this.listaTiendas = data;
+      this.listaTiendas = data
     });
     this.bS.list().subscribe((data) => {
-      this.listaMarcas = data;
+      this.listaMarcas = data
     });
     this.tcS.list().subscribe((data) => {
-      this.listaTipos = data;
+      this.listaTipos = data
     });
     this.cloS.list().subscribe((data) => {
-      this.listaArmarios = data;
+      this.listaArmarios = data
     });
     this.eS.list().subscribe((data) => {
-      this.listaEventos = data;
+      this.listaEventos = data
     });
     this.temS.list().subscribe((data) => {
-      this.listaTemporadas = data;
+      this.listaTemporadas = data
     });
   }
   registrar() {
@@ -121,7 +125,7 @@ export class ClothingCreaditaComponent {
       this.clothing.store.idStore = this.form.value.store;
       this.clothing.closet.idCloset = this.form.value.closet;
       this.clothing.brand.idBrand = this.form.value.brand;
-      this.clothing.typeclothing.idTypeClothing = this.form.value.typeclothing;
+      this.clothing.typeClothing.idTypeClothing = this.form.value.typeClothing;
       if (this.edicion) {
         this.cC.update(this.clothing).subscribe(() => {
           this.cC.list().subscribe((data) => {
@@ -152,16 +156,16 @@ export class ClothingCreaditaComponent {
     if (this.edicion) {
       this.cC.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          idClothing: new FormControl(data.idClothing),
-          season: new FormControl(data.season.nameSeason),
-          texture: new FormControl(data.texture.nameTexture),
-          color: new FormControl(data.color.nameColor),
-          event: new FormControl(data.event.theme),
-          catalog: new FormControl(data.catalog.idCatalog),
-          store: new FormControl(data.store.nameStore),
-          closet: new FormControl(data.closet.nameCloset),
-          brand: new FormControl(data.brand.nameBrand),
-          TypeClothing: new FormControl(data.typeclothing.nameTypeClothing),
+          idClothing: new FormControl(data.idClothing, Validators.required),
+          season: new FormControl(data.season.idSeason, Validators.required),
+          texture: new FormControl(data.texture.idTexture, Validators.required),
+          color: new FormControl(data.color.idColor, Validators.required),
+          event: new FormControl(data.event.idEvent, Validators.required),
+          catalog: new FormControl(data.catalog.idCatalog, Validators.required),
+          store: new FormControl(data.store.idStore, Validators.required),
+          closet: new FormControl(data.closet.idCloset, Validators.required),
+          brand: new FormControl(data.brand.idBrand, Validators.required),
+          typeClothing: new FormControl(data.typeClothing.idTypeClothing, Validators.required),
         });
       });
     }
