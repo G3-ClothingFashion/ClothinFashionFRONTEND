@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-typeclothing',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./typeclothing.component.css']
 })
 export class TypeclothingComponent {
-
+  constructor(public route:ActivatedRoute){}
+  ngOnInit():void{}
 }
