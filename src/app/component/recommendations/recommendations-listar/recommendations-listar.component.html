@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Recomendaciones</h2>
+
+
+
+    <div class="card-container">
+      <div class="card" *ngFor="let element of dataSource.data">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{element.title}}</mat-card-title>
+            <mat-card-subtitle>Autor: {{element.users.nameUser}}</mat-card-subtitle>
+            <mat-card-subtitle>Puntaje: {{element.calification}}</mat-card-subtitle>
+            <mat-card-subtitle>Link Adicional: {{element.addicionalLink}}</mat-card-subtitle>
+            <mat-card-subtitle>Tags: #{{element.categoryTag}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content></mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="accent" [routerLink]="['ediciones', element.idRecommendations]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="eliminar(element.idRecommendations)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        <br/>
+      </div>
+    </div>
+
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

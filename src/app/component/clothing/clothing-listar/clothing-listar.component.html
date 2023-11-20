@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <br />
+    <h2 style="text-align: center;">Lista de Prenda</h2>
+    <mat-form-field>
+      <input matInput (keyup)="filter($event)" placeholder="buscar" />
+    </mat-form-field>
+    <div class="card-container">
+      <div class="card" *ngFor="let element of dataSource.data">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Prenda {{element.idClothing}}</mat-card-title>
+            <mat-card-subtitle>Temporada: {{element.season.nameSeason}}</mat-card-subtitle>
+            <mat-card-subtitle>Textura: {{element.texture.nameTexture}}</mat-card-subtitle>
+            <mat-card-subtitle>Color: {{element.color.nameColor}}</mat-card-subtitle>
+            <mat-card-subtitle>Evento: {{element.event.theme}}</mat-card-subtitle>
+            <mat-card-subtitle>Catálogo: {{element.catalog.idCatalog}}</mat-card-subtitle>
+            <mat-card-subtitle>Tienda: {{element.store.nameStore}}</mat-card-subtitle>
+            <mat-card-subtitle>Armario: {{element.closet.nameCloset}}</mat-card-subtitle>
+            <mat-card-subtitle>Marca: {{element.brand.nameBrand}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button color="accent" [routerLink]="['ediciones', element.idClothing]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="eliminar(element.idClothing)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      <br/>
+      </div>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
+</html>

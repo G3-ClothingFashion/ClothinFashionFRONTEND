@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Tiendas</h2>
+
+
+    <mat-form-field>
+      <input matInput (keyup)="filter($event)" placeholder="Buscar" />
+    </mat-form-field>
+    <div class="card-container">
+      <div class="card" *ngFor="let element of dataSource.filteredData">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{element.nameStore}}</mat-card-title>
+            <mat-card-subtitle>Teléfono: {{element.telephoneStore}}</mat-card-subtitle>
+            <mat-card-subtitle>Código Postal: {{element.postalCode}}</mat-card-subtitle>
+            <mat-card-subtitle>Dirección: {{element.addressStore}}</mat-card-subtitle>
+            <mat-card-subtitle>Catálogo: {{element.catalog.idCatalog}}</mat-card-subtitle>
+            <mat-card-subtitle>Método de pago: {{element.paymentMethod}}</mat-card-subtitle>
+            <mat-card-subtitle>Latitud: {{element.latitude}}</mat-card-subtitle>
+            <mat-card-subtitle>Longitud: {{element.longitude}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-button color="accent" [routerLink]="['ediciones', element.idStore]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="eliminar(element.idStore)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        <br/>
+      </div>
+    </div>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

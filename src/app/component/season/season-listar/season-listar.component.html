@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Temporadas</h2>
+
+
+    <div class="card-container">
+      <div class="card" *ngFor="let element of dataSource.data">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{element.nameSeason}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Inicio: {{element.startDate}}</mat-card-subtitle>
+            <mat-card-subtitle>Fecha de Fin: {{element.endDate}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Descripción: {{element.descriptionSeason}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="accent" [routerLink]="['ediciones', element.idSeason]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="eliminar(element.idSeason)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        <br/>
+      </div>
+    </div>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

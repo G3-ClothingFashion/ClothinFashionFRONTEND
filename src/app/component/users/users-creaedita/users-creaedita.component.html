@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Usuarios</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idUsuario</mat-label>
+          <input matInput placeholder="Id" formControlName="idUser" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nameUser" />
+          <mat-error
+            *ngIf="obtenerControlCampo('nameUser')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            placeholder="Apellido"
+            formControlName="lastNameUser"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('lastNameUser')?.errors?.['required']"
+          >
+            El apellido es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Dirección</mat-label>
+          <input
+            matInput
+            placeholder="Av. Ejemplo"
+            formControlName="adressUser"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('adressUser')?.errors?.['required']"
+          >
+            La dirección es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('birthDate')?.errors?.['required']"
+          >
+            La fecha es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Número de Tarjeta</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Número"
+            name="numero"
+            pattern="[0-9]*"
+            maxlength="16"
+            minlength="16"
+            required
+            formControlName="cardUser"
+          />
+          <mat-error *ngIf="tarjetaFormControl.hasError('pattern')">
+          </mat-error>
+          <mat-error *ngIf="tarjetaFormControl.hasError('maxlength')">
+          </mat-error>
+          <mat-error *ngIf="tarjetaFormControl.hasError('minlength')">
+          </mat-error>
+          <mat-error
+            *ngIf="obtenerControlCampo('cardUser')?.errors?.['required']"
+          >
+            El número de tarjeta debe ser válido.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Teléfono</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Número"
+            name="numero"
+            pattern="[0-9]*"
+            maxlength="9"
+            minlength="9"
+            required
+            formControlName="telephoneUser"
+          />
+          <mat-error *ngIf="numeroFormControl.hasError('pattern')">
+          </mat-error>
+          <mat-error *ngIf="numeroFormControl.hasError('maxlength')">
+          </mat-error>
+          <mat-error *ngIf="numeroFormControl.hasError('minlength')">
+          </mat-error>
+          <mat-error
+            *ngIf="obtenerControlCampo('telephoneUser')?.errors?.['required']"
+          >
+            El teléfono es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de Usuario</mat-label>
+          <input matInput placeholder="username" formControlName="username" />
+          <mat-error
+            *ngIf="obtenerControlCampo('username')?.errors?.['required']"
+          >
+            El nombre de usuario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="password" formControlName="password" [type]="hide ? 'password' : 'text'"/>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="obtenerControlCampo('password')?.errors?.['required']"
+          >
+            La contraseña es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="ejemplo@example.ex" type="email" placeholder="Correo electrónico" name="correo" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required formControlName="mail">
+          <mat-error *ngIf="obtenerControlCampo('mail')?.errors?.['required']">
+            El correo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Habilitado</mat-label>
+          <mat-select formControlName="enabled">
+            <mat-option [value]="true">Habilitado</mat-option>
+            <mat-option [value]="false">Inhabilitado</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('enabled')?.errors?.['required']"
+          >
+            El correo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/users">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

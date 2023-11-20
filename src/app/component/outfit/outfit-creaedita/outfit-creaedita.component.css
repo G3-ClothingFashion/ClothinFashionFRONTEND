@@ -1,0 +1,63 @@
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display:none;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #F2C6C2;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  background-color: #F2E8DF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+}
+
+.example-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-label {
+  color: #333;
+}
+
+mat-select, input, textarea {
+  background-color: #F2E8DF;
+  color: #333;
+}
+
+mat-option {
+  color: #333;
+}
+
+mat-error {
+  color: #F2B263;
+}
+
+button {
+  margin-right: 10px;
+}
+
+button[color="primary"] {
+  background-color: #F2B263;
+  color: #333;
+}
+
+button[color="warn"] {
+  background-color: #333;
+  color: #F2E8DF;
+}
